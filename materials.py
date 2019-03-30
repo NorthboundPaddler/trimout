@@ -39,17 +39,20 @@ class Window(RoughOpening):
         top_btm_inches, sides_inches  = self.getAllTrimLengthsFromInsideJambEdge()
         return (top_btm_inches*2) + (sides_inches*2)
 
-class Board():
-    def _init__(self, width, length):
+class Board(object):
+    def __init__(self, width=3, length=90):
         self.width = width
         self.length = length
         self.original_length = self.length
-        self.pieces = []
+        self.pieces = [self.length]
         
     def cut(self, cutLength):
         if cutLength > self.length:
             return False
         else:    
             self.length = self.length - cutLength
+            self.pieces.remove(self.length + cutLength)
+            self.pieces.append(self.length)
             self.pieces.append(cutLength)
-            return Board(self.width, cutLength)
+            self.pieces.sort()
+            return cutLength

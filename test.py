@@ -1,6 +1,6 @@
 import unittest
 
-from materials import RoughOpening, Window
+from materials import RoughOpening, Window, Board
 
 
 class TestRoughOpening(unittest.TestCase):
@@ -40,6 +40,23 @@ class TestWindow(unittest.TestCase):
         '''
         result = self.window.getTotalTrimInches()
         self.assertEqual(result, 218)
+
+class TestBoard(unittest.TestCase):
+    def setUp(self):
+        self.board = Board(width=3, length=48)
+    
+    def test_cutBoard(self):
+        result = self.board.cut(cutLength=12)
+        self.assertEqual(result, 12)
+
+    def test_cutPieces(self):
+        self.board.cut(cutLength=12)
+        result = self.board.pieces
+        self.assertEqual(result, [12,36])
+    
+    def test_cutPiecesFailure(self):
+        result = self.board.cut(cutLength=60)
+        self.assertEqual(result, False)
         
 if __name__ == '__main__':
     unittest.main()
