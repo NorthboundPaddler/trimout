@@ -3,6 +3,9 @@ Library to calculate the amount of trim needed for around windows/doors, with th
 
 A class based module, there are the following:
 
+Rough Openings:
+Parent class of windows and doors, which just stores lengths of sides and a couple of methods for finding the length of those sides
+
 Windows:
 
 Doors:
@@ -11,4 +14,4 @@ Boards:
 
 Project:
 
-I want to try and incorporate testing into this module as well. 
+ 
